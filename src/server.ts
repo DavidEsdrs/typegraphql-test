@@ -14,7 +14,8 @@ const bootstrap = async () => {
         container: Container
     });
     const server = new ApolloServer({ schema });
-    await server.listen({ port: 4000 }, () => console.log(`running...`));
+    const PORT = process.env.SERVER_PORT ?? 4000;
+    await server.listen({ port: PORT }, () => console.log(`running...`));
 }
 
 bootstrap();

@@ -6,6 +6,7 @@ import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../../repositories/Users/UsersRepository";
 import { sign, verify } from "jsonwebtoken";
 import { Inject, Service } from "typedi";
+import { compare, hash } from "bcryptjs";
 
 @Resolver(User)
 export class UserResolver {
@@ -37,7 +38,9 @@ export class UserResolver {
             throw new Error("User already exists!");
         }
 
-        const user = this.usersRepo.create({ email, password, username });
+        const encryptedPassword = await hash(password, 8);
+
+        const user = this.usersRepo.create({ email, password: encryptedPassword, username });
 
         await this.usersRepo.saveUser(user);
 
@@ -54,13 +57,13 @@ export class UserResolver {
             throw new Error("Invalid email!");
         }
 
-        const isCorrectPassword = user.password === password;
+        const isCorrectPassword = await compare(password, user.password);
 
         if(!isCorrectPassword) {
             throw new Error("Invalid password!");
         }
 
-        const token = sign({ email }, process.env.JWT_SECRET ?? String(Math.floor(Math.random() * 100)), {
+        const token = sign({ email }, process.env.JWT_SECRET ?? "testsecret", {
             subject: user.id
         });
 

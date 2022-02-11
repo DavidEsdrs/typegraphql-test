@@ -1,8 +1,10 @@
 import { Service } from "typedi";
-import { EntityRepository, Repository } from "typeorm";
+import { EntityRepository, getCustomRepository, Repository } from "typeorm";
 import { Video } from "../../graphql/Video/Video.schema";
 import { IVideosRepository } from "./IVideosRepository";
 
-@Service()
+const buildVideosRepository = () => getCustomRepository(VideosRepository);
+
+@Service({ factory: buildVideosRepository })
 @EntityRepository(Video)
 export class VideosRepository extends Repository<Video> implements IVideosRepository {}
