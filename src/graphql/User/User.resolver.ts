@@ -64,7 +64,8 @@ export class UserResolver {
         }
 
         const token = sign({ email }, process.env.JWT_SECRET ?? "testsecret", {
-            subject: user.id
+            subject: user.id,
+            expiresIn: "1d"
         });
 
         return token;
