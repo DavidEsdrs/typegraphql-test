@@ -1,4 +1,5 @@
 import { ObjectType, Field, ID } from "type-graphql";
+import { Entity } from "typeorm";
 
 @ObjectType()
 export class Video {

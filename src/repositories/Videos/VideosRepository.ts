@@ -1,6 +1,6 @@
 import { Service } from "typedi";
 import { EntityRepository, getCustomRepository, Repository } from "typeorm";
-import { Video } from "../../graphql/Video/Video.schema";
+import { Video } from "../../entities/Video.schema";
 import { IVideosRepository } from "./IVideosRepository";
 
 const buildVideosRepository = () => getCustomRepository(VideosRepository);

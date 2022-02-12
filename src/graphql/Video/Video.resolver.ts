@@ -1,4 +1,4 @@
-import { InputType, ArgsType, Mutation, Query, Resolver, Args } from "type-graphql";
+import { Mutation, Query, Resolver, Args } from "type-graphql";
 import { Inject, Service } from "typedi";
 import { getCustomRepository } from "typeorm";
 import { Video } from "../../entities/Video.schema";
