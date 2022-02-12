@@ -1,6 +1,5 @@
 import { Mutation, Query, Resolver, Args } from "type-graphql";
-import { Inject, Service } from "typedi";
-import { getCustomRepository } from "typeorm";
+import { Inject } from "typedi";
 import { Video } from "../../entities/Video.schema";
 import { IVideosRepository } from "../../repositories/Videos/IVideosRepository";
 import { VideosRepository } from "../../repositories/Videos/VideosRepository";

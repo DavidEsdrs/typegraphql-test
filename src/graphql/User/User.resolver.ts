@@ -2,10 +2,9 @@ import { Resolver, Args, Mutation, Query } from "type-graphql";
 import { User } from "../../entities/User.schema";
 import { FindOneUser, LoginInput, UserInput } from "./User.input";
 import { IUsersRepository } from "../../repositories/Users/IUsersRepository";
-import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../../repositories/Users/UsersRepository";
-import { sign, verify } from "jsonwebtoken";
-import { Inject, Service } from "typedi";
+import { sign } from "jsonwebtoken";
+import { Inject } from "typedi";
 import { compare, hash } from "bcryptjs";
 
 @Resolver(User)
