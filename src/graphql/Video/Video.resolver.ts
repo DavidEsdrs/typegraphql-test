@@ -17,6 +17,14 @@ export class VideoResolver {
         return videos;
     }
 
+    @Query(() => Video)
+    async video(
+        @Args() id: string
+    ) {
+        const video = await this.videosRepo.findById(id);
+        return video;
+    }
+
     @Mutation(() => Video)
     async createVideo(
         @Args() videoInput: VideoInput
