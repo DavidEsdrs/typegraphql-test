@@ -18,7 +18,7 @@ export class VideoResolver {
     }
 
     @Query(() => Video)
-    async video(
+    async findById(
         @Args() id: string
     ) {
         const video = await this.videosRepo.findById(id);
