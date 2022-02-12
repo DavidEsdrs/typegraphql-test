@@ -3,7 +3,7 @@ import { Inject } from "typedi";
 import { Video } from "../../entities/Video.schema";
 import { IVideosRepository } from "../../repositories/Videos/IVideosRepository";
 import { VideosRepository } from "../../repositories/Videos/VideosRepository";
-import { VideoInput } from "./Video.input";
+import { FindByIdArgs, VideoInput } from "./Video.input";
 
 @Resolver(Video)
 export class VideoResolver {
@@ -19,7 +19,7 @@ export class VideoResolver {
 
     @Query(() => Video)
     async findById(
-        @Args() id: string
+        @Args() { id }: FindByIdArgs
     ) {
         const video = await this.videosRepo.findById(id);
         return video;

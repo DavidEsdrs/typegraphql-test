@@ -11,3 +11,9 @@ export class VideoInput {
     @Field()
     category: string;
 }
+
+@ArgsType()
+export class FindByIdArgs {
+    @Field()
+    readonly id: string;
+}
